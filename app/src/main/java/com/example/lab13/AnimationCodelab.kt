@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -44,7 +45,7 @@ internal fun AnimationCodelab() {
             TextButton(onClick = { schedule = false }, modifier = Modifier.width(90.dp)) { Text("Inicio") }
             TextButton(onClick = { schedule = true }, modifier = Modifier.width(90.dp)) { Text("Agenda") }
         }
-        Box(Modifier.offset(x = indicatorOffset).width(indicatorWidth).height(3.dp).background(Mint, RoundedCornerShape(50)))
+        Box(Modifier.offset { IntOffset(indicatorOffset.roundToPx(), 0) }.width(indicatorWidth).height(3.dp).background(Mint, RoundedCornerShape(50)))
         Spacer(Modifier.height(18.dp))
         Text(if (schedule) "Próximas actividades" else "Resumen de hoy", style = MaterialTheme.typography.titleMedium)
         Text("● Sincronizando", color = Mint, modifier = Modifier.graphicsLayer { alpha = pulseAlpha })

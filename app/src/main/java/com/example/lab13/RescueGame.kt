@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 
 private enum class Mission { Briefing, Flying, Won, Lost }
@@ -49,7 +50,7 @@ internal fun RescueGame() {
                 }
             }
         }
-        Box(Modifier.offset(x = x, y = 139.dp).size(shipSize).background(Mint, CircleShape), contentAlignment = Alignment.Center) {
+        Box(Modifier.offset { IntOffset(x.roundToPx(), 139.dp.roundToPx()) }.size(shipSize).background(Mint, CircleShape), contentAlignment = Alignment.Center) {
             Text("▲", color = Navy, style = MaterialTheme.typography.headlineSmall)
         }
     }

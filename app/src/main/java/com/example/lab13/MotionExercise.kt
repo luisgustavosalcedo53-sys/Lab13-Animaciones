@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 @Composable
 internal fun MotionExercise() {
@@ -22,8 +23,8 @@ internal fun MotionExercise() {
         val x by animateDpAsState(if (moved) (maxWidth - 126.dp).coerceAtLeast(14.dp) else 14.dp, tween(850), label = "Desplazamiento X")
         val shape = RoundedCornerShape(18.dp)
         val base = Modifier.size(size)
-        val order = if (backgroundMoves) base.offset(x, y).background(Mint, shape)
-            else base.background(Mint, shape).offset(x, y)
+        val order = if (backgroundMoves) base.offset { IntOffset(x.roundToPx(), y.roundToPx()) }.background(Mint, shape)
+            else base.background(Mint, shape).offset { IntOffset(x.roundToPx(), y.roundToPx()) }
         Box(order, contentAlignment = Alignment.Center) { Text("✦", color = if (backgroundMoves) Navy else Mint) }
     }
     Button(onClick = { moved = !moved }) { Text(if (moved) "Volver al inicio" else "Mover y ampliar") }
